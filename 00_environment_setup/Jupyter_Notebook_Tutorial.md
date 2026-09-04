@@ -1,23 +1,30 @@
-# 📘 VS Code × Jupyter Notebook 全方位實戰教學指南
+# 📘 Antigravity IDE × Jupyter Notebook 全方位實戰教學指南
 
-本指南專為在 VS Code / 雲端開發環境中高效使用 Jupyter Notebook 所設計，從環境安裝、視覺客製化、極速虛擬環境配置到套件管理，手把手帶您完整上手。
+本指南專為在 Antigravity IDE / 雲端開發環境中高效使用 Jupyter Notebook 所設計，從環境安裝、視覺客製化、極速虛擬環境配置到套件管理，手把手帶您完整上手。
 
 ---
 
 ## 📑 目錄
-1. [第一章：在 VS Code 安裝 Jupyter 延伸模組（Extensions）](#第一章在-vs-code-安裝-jupyter-延伸模組extensions)
+1. [第一章：在 Antigravity IDE 安裝 Jupyter 延伸模組（Extensions）](#第一章在-vs-code-安裝-jupyter-延伸模組extensions)
 2. [第二章：客製化外觀與主題配色（附 AI 自然語言切換 Prompt）](#第二章客製化外觀與主題配色附-ai-自然語言切換-prompt)
 3. [第三章：使用 uv 快速建立 venv 虛擬環境並綁定 Jupyter Kernel](#第三章使用-uv-快速建立-venv-虛擬環境並綁定-jupyter-kernel)
 4. [第四章：在 Jupyter Cell 中直接使用 uv 安裝 Python 套件](#第四章在-jupyter-cell-中直接使用-uv-安裝-python-套件)
 
 ---
 
-## 第一章：在 VS Code 安裝 Jupyter 延伸模組（Extensions）
+## 第一章：在 Antigravity IDE 安裝 Jupyter 延伸模組（Extensions）
 
-要在 VS Code 內流暢使用 `.ipynb` 筆記本，需要先安裝官方支援的延伸模組。
+要在 Antigravity IDE 內流暢使用 `.ipynb` 筆記本，需要先安裝官方支援的延伸模組。
+
+> ⚠️ **未實測確認事項**：Antigravity IDE 是 VS Code 相容分支，介面操作（左側活動列、`Ctrl+Shift+X`
+> 快捷鍵、Extensions 面板）理論上相通，但**延伸模組市集是否為同一套 Microsoft Marketplace、
+> 下方表格的識別碼 ID 是否完全通用，目前尚未實際驗證**。如果搜尋不到對應套件，
+> 可以直接請 Antigravity 內建的 AI Agent 協助檢查/安裝（做法可參考
+> [aicloud-docs 第 2 章](https://github.com/gemini960114/aicloud-docs/blob/main/docs/guide/02_ssh_proxyjump_and_dev_env.md)
+> 的自然語言 Prompt 配方），比手動比對套件 ID 更省事。
 
 ### 1. 開啟延伸模組市集
-* 點擊 VS Code 左側活動列的 **「Extensions（延伸模組）」圖示**（或按快捷鍵 `Ctrl + Shift + X` / Mac: `Cmd + Shift + X`）。
+* 點擊 Antigravity IDE 左側活動列的 **「Extensions（延伸模組）」圖示**（或按快捷鍵 `Ctrl + Shift + X` / Mac: `Cmd + Shift + X`）。
 
 ### 2. 搜尋並安裝必備模組
 在搜尋框中依序搜尋並點擊 **Install（安裝）**：
@@ -30,14 +37,14 @@
 | **Jupyter Keymap** (推薦) | `ms-toolsai.jupyter-keymap` | 還原傳統 Jupyter Notebook 的經典快捷鍵習慣（如按 `Esc` + `B` 插入下方 Cell） |
 
 ### 3. 驗證安裝
-* 在 VS Code 檔案總管中新增或開啟任意 `.ipynb` 檔案（例如 `demo.ipynb`）。
+* 在 Antigravity IDE 檔案總管中新增或開啟任意 `.ipynb` 檔案（例如 `demo.ipynb`）。
 * 檔案應呈現為互動式 Cell 畫面，即代表安裝成功。
 
 ---
 
 ## 第二章：客製化外觀與主題配色（附 AI 自然語言切換 Prompt）
 
-VS Code 預設的 Notebook Cell 邊界較不明顯。透過配置 `settings.json`，可以大幅提升視覺層次與長時間閱讀舒適度。
+Antigravity IDE 預設的 Notebook Cell 邊界較不明顯。透過配置 `settings.json`，可以大幅提升視覺層次與長時間閱讀舒適度。
 
 以下為三種精選配色，您可以直接複製下方的 **「AI 提示詞（Prompt）」**，貼給 AI 助手為您一鍵自動套用！
 
@@ -49,7 +56,7 @@ VS Code 預設的 Notebook Cell 邊界較不明顯。透過配置 `settings.json
 
 > 💬 **給 AI 的自然語言切換 Prompt**（直接複製使用）：
 > ```text
-> 請幫我把 VS Code 的 Jupyter Notebook 外觀切換為「方案一：現代卡片暖白風」。
+> 請幫我把 Antigravity IDE 的 Jupyter Notebook 外觀切換為「方案一：現代卡片暖白風」。
 > 包含淺色主題 Default Light Modern、底色設為 #f6f8fa、Cell 底色設為純白 #ffffff、加上 #d0d7de 細灰邊框與 #0969da 藍色聚焦框，並關閉 compactView。
 > ```
 
@@ -61,7 +68,7 @@ VS Code 預設的 Notebook Cell 邊界較不明顯。透過配置 `settings.json
 
 > 💬 **給 AI 的自然語言切換 Prompt**（直接複製使用）：
 > ```text
-> 請幫我把 VS Code 主題切換為「方案二：Solarized Light 復古羊皮紙暖色風」。
+> 請幫我把 Antigravity IDE 主題切換為「方案二：Solarized Light 復古羊皮紙暖色風」。
 > 包含 Solarized Light 主題、米黃底色 #fdf6e3、Cell 背景 #eee8d5、暖灰框線 #d3cbb7 與經典海藍聚焦框 #268bd2，並開啟邊框模式。
 > ```
 
@@ -73,7 +80,7 @@ VS Code 預設的 Notebook Cell 邊界較不明顯。透過配置 `settings.json
 
 > 💬 **給 AI 的自然語言切換 Prompt**（直接複製使用）：
 > ```text
-> 請幫我把 VS Code 主題切換為「方案三：Nord 極光冷灰藍風」。
+> 請幫我把 Antigravity IDE 主題切換為「方案三：Nord 極光冷灰藍風」。
 > 包含深色主題 Default Dark Modern、極光冷灰背景 #242933、Cell 內部 #2e3440、細微框線 #434c5e 與極光冰藍聚焦框 #88c0d0。
 > ```
 
@@ -151,7 +158,7 @@ uv pip install --python .venv/bin/python ipykernel
 ---
 
 ### 4. 將環境註冊為自訂 Jupyter Kernel（例如命名為 `16S`）
-預設情況下 VS Code 會將環境顯示為 `.venv`，若有多個專案容易混淆。將其正式註冊並命名（如 `16S`、`RNA-seq`、`ML-Project`）能讓選單清晰明瞭：
+預設情況下 Antigravity IDE 會將環境顯示為 `.venv`，若有多個專案容易混淆。將其正式註冊並命名（如 `16S`、`RNA-seq`、`ML-Project`）能讓選單清晰明瞭：
 
 ```bash
 # 將 .venv 註冊為自訂名稱的 Jupyter Kernel（以 16S 為例）
@@ -169,7 +176,7 @@ uv pip install --python .venv/bin/python ipykernel
 
 ---
 
-### 5. 在 VS Code Notebook 中選取 Kernel
+### 5. 在 Antigravity IDE Notebook 中選取 Kernel
 1. 開啟任何 `.ipynb` 筆記本。
 2. 點擊畫面右上角的 **「Select Kernel（選擇核心）」** 按鈕。
 3. 您可以透過以下任一方式選取：

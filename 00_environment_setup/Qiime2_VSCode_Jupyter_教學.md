@@ -1,7 +1,7 @@
-# QIIME 2 官方教學頁面 → VS Code 可執行 Notebook 教學文件
+# QIIME 2 官方教學頁面 → Antigravity IDE 可執行 Notebook 教學文件
 
 本文件記錄「把 QIIME 2 官方線上教學（例如 [Moving Pictures tutorial](https://amplicon-docs.qiime2.org/en/stable/tutorials/moving-pictures/)）
-轉成一份可以在 VS Code 裡直接執行的 `.ipynb`」的完整流程，包含環境安裝、kernel 註冊，
+轉成一份可以在 Antigravity IDE 裡直接執行的 `.ipynb`」的完整流程，包含環境安裝、kernel 註冊，
 以及實際操作中遇到的兩個常見問題與解法。
 
 前置的 Miniconda / QIIME2 conda 環境安裝步驟，請先參考另一份文件：
@@ -12,11 +12,11 @@
 ## 1. 整體流程總覽
 
 1. 在 `/work/c00cjz00/Miniconda` 安裝 Miniconda，建立專屬的 QIIME2 conda 環境（例如 `rachis-qiime2-2026.7`）。
-2. 在該環境裡安裝 `ipykernel`，並註冊成 Jupyter kernel，讓 VS Code 可以選用。
+2. 在該環境裡安裝 `ipykernel`，並註冊成 Jupyter kernel，讓 Antigravity IDE 可以選用。
 3. 把 QIIME 2 官方教學頁面的內容（文字＋指令）整理成一份 `.ipynb`：
    - 每個章節標題、說明文字、Question 提示 → 寫成 **markdown cell**
    - 每個 `qiime ...` / `wget` / `unzip` 等 shell 指令 → 寫成 **`%%bash` code cell**
-4. 用 VS Code 打開這份 notebook，切換到剛剛註冊的 kernel，依序執行 cell。
+4. 用 Antigravity IDE 打開這份 notebook，切換到剛剛註冊的 kernel，依序執行 cell。
 
 ---
 
@@ -63,7 +63,7 @@ python -m ipykernel install --user --name rachis-qiime2-2026.7 --display-name "Q
 
 ---
 
-## 4. 常見問題一：VS Code 裡切換 kernel 卻找不到新裝的 kernel
+## 4. 常見問題一：Antigravity IDE 裡切換 kernel 卻找不到新裝的 kernel
 
 **現象：** 在 conda 環境裡執行完 `python -m ipykernel install --user --name ... --display-name ...` 後，
 notebook 右上角的 kernel 選單卻沒有出現新的選項。
@@ -71,12 +71,12 @@ notebook 右上角的 kernel 選單卻沒有出現新的選項。
 **原因排查：**
 - 用 `jupyter kernelspec list` 確認 kernel 是否真的有註冊成功（通常會列在
   `~/.local/share/jupyter/kernels/<name>/kernel.json`）。如果這裡看得到，代表**後端安裝沒問題**，
-  問題出在前端（VS Code）還沒重新掃描清單。
+  問題出在前端（Antigravity IDE）還沒重新掃描清單。
 
 **解法：**
 1. 點 notebook 右上角的 kernel 選擇器 → 不要只看預設清單，要先選 **「Select Another Kernel...」**
 2. 再選 **「Jupyter Kernel...」**（而不是「Python Environments...」），新註冊的 kernel 才會顯示出來。
-3. 如果還是看不到，執行 VS Code 命令面板（`Ctrl+Shift+P`）→ **「Developer: Reload Window」** 強制重新整理。
+3. 如果還是看不到，執行 Antigravity IDE 命令面板（`Ctrl+Shift+P`）→ **「Developer: Reload Window」** 強制重新整理。
 
 > 這次實際操作中，問題就是卡在「沒有先點 Select Another Kernel 再進 Jupyter Kernel 分類」，
 > 選對路徑後 kernel 馬上就出現了。
@@ -93,7 +93,7 @@ CalledProcessError: Command 'b'...\nqiime info\n'' returned non-zero exit status
 
 **原因：**
 `%%bash` 這個 magic 會開一個全新的 subshell 來執行指令。這個 subshell 的 `PATH` 環境變數，
-是繼承自「啟動這個 Jupyter kernel process 的外層程式」（也就是 VS Code 本身），
+是繼承自「啟動這個 Jupyter kernel process 的外層程式」（也就是 Antigravity IDE 本身），
 **不是**繼承自你之前手動 `source .../activate` 過的那個 terminal shell。
 
 所以即使這個 kernel 本身用的就是 QIIME2 conda 環境的 Python（`sys.executable` 是對的），
@@ -123,7 +123,7 @@ print("PATH now starts with:", os.environ["PATH"].split(os.pathsep)[0])
 
 - [ ] `conda env list` 確認 QIIME2 環境存在
 - [ ] `jupyter kernelspec list` 確認對應 kernel 已註冊
-- [ ] VS Code 切 kernel 時走 **Select Another Kernel → Jupyter Kernel** 這條路徑
+- [ ] Antigravity IDE 切 kernel 時走 **Select Another Kernel → Jupyter Kernel** 這條路徑
 - [ ] notebook 第一個 code cell 是 PATH 修正 cell，且已經執行過
 - [ ] 第二個 code cell（`qiime info`）能正常印出版本資訊，代表環境串接成功
 

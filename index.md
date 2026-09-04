@@ -19,7 +19,7 @@ hero:
 features:
   - icon: 🧰
     title: Module 0｜環境與背景知識
-    details: VS Code + Jupyter 擴充套件、Miniconda + QIIME2 環境建置、kernel 選單與 %%bash PATH 常見坑、台灣杉三號平台使用手冊。
+    details: Antigravity IDE + Jupyter 擴充套件、Miniconda + QIIME2 環境建置、kernel 選單與 %%bash PATH 常見坑、台灣杉三號平台使用手冊。
     link: /00_environment_setup/快速上手
     linkText: 開始環境設定
   - icon: 🧪

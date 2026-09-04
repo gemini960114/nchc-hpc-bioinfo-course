@@ -15,9 +15,9 @@
 
 | 主題 | 文件 | 這份文件解決什麼問題 |
 |---|---|---|
-| VS Code + Jupyter 擴充套件安裝、kernel 基本操作、用 `uv` 建虛擬環境 | [00_environment_setup/Jupyter_Notebook_Tutorial.md](00_environment_setup/Jupyter_Notebook_Tutorial.md) | 讓 VS Code 能開 `.ipynb`、認識 kernel 選單、輕量 Python 專案用 `uv` 管理套件 |
+| Antigravity IDE + Jupyter 擴充套件安裝、kernel 基本操作、用 `uv` 建虛擬環境 | [00_environment_setup/Jupyter_Notebook_Tutorial.md](00_environment_setup/Jupyter_Notebook_Tutorial.md) | 讓 Antigravity IDE 能開 `.ipynb`、認識 kernel 選單、輕量 Python 專案用 `uv` 管理套件 |
 | Miniconda 安裝、QIIME2 conda 環境建立、ipykernel 註冊 | [00_environment_setup/conda_miniconda_qiime2_install.md](00_environment_setup/conda_miniconda_qiime2_install.md) | 重量級生資工具（有官方 conda yml 的）該怎麼裝、怎麼註冊成 notebook 可選的 kernel |
-| 把官方教學轉成可執行 notebook、VS Code kernel 選單找不到新 kernel、`%%bash` PATH 問題 | [00_environment_setup/Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) | Notebook 端最常見的兩個「明明裝好了卻跑不動」的坑 |
+| 把官方教學轉成可執行 notebook、Antigravity IDE kernel 選單找不到新 kernel、`%%bash` PATH 問題 | [00_environment_setup/Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) | Notebook 端最常見的兩個「明明裝好了卻跑不動」的坑 |
 | 台灣杉三號 GP1 生醫節點使用手冊（登入、儲存、計費、SLURM partition 表、桌面環境、**RAPIDS + Singularity** GPU 容器範例） | [00_environment_setup/TWCC_Taiwania3_GP1生醫節點_使用手冊.md](00_environment_setup/TWCC_Taiwania3_GP1生醫節點_使用手冊.md) | 這台機器的操作規則與資源限制，所有範例的大前提。RAPIDS 段落是本課程另一處用到 Singularity 的地方（GPU 容器 + Jupyter port tunnel），跟 Module 3 的 CPU 容器 + SLURM pipeline 用法互相對照 |
 | **快速上手**（環境已經裝好、只想趕快跑分析的人看這份就夠） | [00_environment_setup/快速上手.md](00_environment_setup/快速上手.md) | 三步驟講完「登入 → 選 kernel → 跑分析」，遇到問題查對照表，不用先讀完上面四份完整文件 |
 
@@ -65,7 +65,7 @@
 ```
 Module 0（環境與背景知識）
    00_environment_setup/
-   Jupyter/VS Code 安裝 → conda/QIIME2 環境 → notebook 轉寫技巧 → HPC 平台手冊（含 RAPIDS/Singularity 範例）
+   Jupyter/Antigravity IDE 安裝 → conda/QIIME2 環境 → notebook 轉寫技巧 → HPC 平台手冊（含 RAPIDS/Singularity 範例）
         │
         ▼
 Module 1：FastQC + MultiQC（分析前的 QC 習慣）
@@ -89,7 +89,7 @@ Module 3：Singularity + HUMAnN3（容器化生資工具 + SLURM，補 QIIME2 �
 
 | 案例 | 記錄位置 |
 |---|---|
-| VS Code kernel 選單裝好卻找不到新 kernel | [00_environment_setup/Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) 第 4 節 |
+| Antigravity IDE kernel 選單裝好卻找不到新 kernel | [00_environment_setup/Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) 第 4 節 |
 | `%%bash` cell 找不到指令（PATH 沒繼承 conda activate） | [00_environment_setup/Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) 第 5 節 |
 | Compute node 連不到外網，需要設定 proxy | [02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) 第 5.2.1 節、[00_environment_setup/TWCC_Taiwania3_GP1生醫節點_使用手冊.md](00_environment_setup/TWCC_Taiwania3_GP1生醫節點_使用手冊.md) 第 2 節 |
 | `qiime ... --output-dir` 目錄已存在導致報錯 | [02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) 第 5.2 節 |

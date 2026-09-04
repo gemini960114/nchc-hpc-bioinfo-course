@@ -46,6 +46,45 @@
   3. Email OTP
   ```
 
+### 2.1 用 Antigravity IDE Remote SSH 連線（`~/.ssh/config` 設定）
+
+Antigravity IDE（VS Code 相容分支）內建 Remote SSH 功能，跟終端機一樣讀取本機的 `~/.ssh/config`
+（Windows 路徑為 `C:\Users\<帳號>\.ssh\config`）。這台機器**必須走密碼 + OTP 的互動式驗證**，
+不能用金鑰登入，設定檔要明確關掉金鑰驗證，強制走互動式流程：
+
+```ssh-config
+Host t3-c4
+  HostName t3-c4.nchc.org.tw
+  User c00cjz00
+
+  # 直接進入 OTP / MFA 驗證流程
+  PubkeyAuthentication no
+  KbdInteractiveAuthentication yes
+  PreferredAuthentications keyboard-interactive,password
+
+  # 維持及偵測連線狀態
+  ServerAliveInterval 30
+  ServerAliveCountMax 3
+
+  # 如果目前網路確實需要，再保留
+  IPQoS none
+```
+
+> **跟一般雲端 VM（例如晶創雲）的 SSH config 寫法不一樣**：晶創雲那類 VM 通常用
+> `IdentityFile ~/.ssh/xxx.pem` 走金鑰登入；這台機器（GP1 生醫節點）走的是機構帳號 + OTP，
+> 一定要把 `PubkeyAuthentication` 關掉、`PreferredAuthentications` 指定成
+> `keyboard-interactive,password`，不然 SSH 客戶端會先嘗試金鑰驗證失敗才 fallback，
+> 連線體驗會變慢甚至卡住。
+>
+> `User` 請換成自己的帳號（範例是 `c00cjz00`）。
+
+設定好之後：
+
+- **終端機**：直接 `ssh t3-c4` 就能連，不用每次打完整主機名稱
+- **Antigravity IDE**：Remote SSH 面板會列出 `t3-c4` 這個 Host，點選即可連線
+- 不管哪種方式連線，都還是會跳出上面提到的 2FA 選單，正常輸入密碼 + OTP 即可，
+  `~/.ssh/config` 只是省去每次打完整參數的麻煩，不會跳過 OTP 驗證
+
 - 上傳資料建議走 `t3-c4.nchc.org.tw`，用 SFTP/SCP/rsync：
 
   ```bash

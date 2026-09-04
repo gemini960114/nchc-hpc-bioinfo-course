@@ -11,9 +11,9 @@
 
 | 檔案 | 類型 | 涵蓋主題 | 定位 |
 |---|---|---|---|
-| [Jupyter_Notebook_Tutorial.md](00_environment_setup/Jupyter_Notebook_Tutorial.md) | md | VS Code Jupyter 擴充套件安裝、主題客製化、`uv` + venv + ipykernel、cell 內裝套件 | 通用 Jupyter 入門（**未涉及 conda / HPC**） |
+| [Jupyter_Notebook_Tutorial.md](00_environment_setup/Jupyter_Notebook_Tutorial.md) | md | Antigravity IDE Jupyter 擴充套件安裝、主題客製化、`uv` + venv + ipykernel、cell 內裝套件 | 通用 Jupyter 入門（**未涉及 conda / HPC**） |
 | [conda_miniconda_qiime2_install.md](00_environment_setup/conda_miniconda_qiime2_install.md) | md | Miniconda 安裝、ToS 接受、QIIME2 conda 環境建立、ipykernel 註冊、conda vs mamba 建議 | QIIME2 環境安裝 SOP |
-| [Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) | md | 把官方 QIIME2 教學頁面轉成 notebook 的方法、VS Code kernel 選擇問題、`%%bash` PATH 問題 | 環境安裝 → notebook 實際可跑的橋接層 |
+| [Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) | md | 把官方 QIIME2 教學頁面轉成 notebook 的方法、Antigravity IDE kernel 選擇問題、`%%bash` PATH 問題 | 環境安裝 → notebook 實際可跑的橋接層 |
 | [TWCC_Taiwania3_GP1生醫節點_使用手冊.md](00_environment_setup/TWCC_Taiwania3_GP1生醫節點_使用手冊.md) | md | 帳號/計畫申請、登入、儲存空間與費率、模組系統、SLURM partition 表、job script、常用查詢、桌面環境、RAPIDS（含 Singularity GPU 容器範例）/Parabricks/AlphaFold2 | 平台總覽手冊（範圍最廣，資訊密度最高） |
 | [01_FastQC_MultiQC_教學.md](01_fastqc_multiqc/01_FastQC_MultiQC_教學.md) + [01_fastqc_multiqc_demo.ipynb](01_fastqc_multiqc/01_fastqc_multiqc_demo.ipynb) | md + ipynb | 用模擬 FASTQ 資料跑 FastQC + MultiQC，練習判讀 QC 報告 | 分析前置作業的第一課，取代原本的文字接龍範例 |
 | [SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) | md | SLURM script 語法、pipeline 腳本與 SLURM 派送腳本分離架構、送出/監控/除錯指令 | SLURM 專項深化教學，後續 HUMAnN3 模組沿用同一套架構 |
@@ -29,7 +29,7 @@
 
 | 案例 | 記錄位置 |
 |---|---|
-| VS Code kernel 選單裝好卻找不到新 kernel | [Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) 第 4 節 |
+| Antigravity IDE kernel 選單裝好卻找不到新 kernel | [Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) 第 4 節 |
 | `%%bash` cell 找不到 `qiime`（exit 127，PATH 不繼承 conda activate） | [Qiime2_VSCode_Jupyter_教學.md](00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) 第 5 節 |
 | Compute node 完全連不到外網，需要設定 proxy | [SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) 第 5.2.1 節 |
 | `qiime ... --output-dir` 目錄已存在導致報錯 | [SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) 第 5.2 節 |
@@ -66,7 +66,7 @@
   - 基本 shell 指令（`cd`、`ls`、`wget` 等）
   - 對「什麼是虛擬環境」有基本概念（不要求精通）
   - 不要求 QIIME2 / SLURM / Singularity 先備知識（本課程從零帶起）
-- **課程形式**：講解 + 現場實作（Bring Your Own Laptop，透過 VS Code Remote-SSH 連進 T3），全程用真實帳號跑一次完整流程
+- **課程形式**：講解 + 現場實作（Bring Your Own Laptop，透過 Antigravity IDE Remote-SSH 連進 T3），全程用真實帳號跑一次完整流程
 - **建議總時數**：約 7.75 小時。兩種排法擇一：
   - **一天半**（推薦）：第一天上到 Module 6（SLURM 排程實戰），第二天上午收尾 Module 7（Singularity/HUMAnN3）+ Module 8（總結）
   - **一天（壓縮版）**：把 Module 4（FastQC/MultiQC）與 Module 7（Singularity/HUMAnN3）列為**選修/課後自學教材**（教材本身已經是可獨立自學的完整單元，不強制排在課堂時段內），課堂只上核心的 Module 0~3、5、6、8，壓回約 6 小時
@@ -76,8 +76,8 @@
 ## 4. 課程大綱（對應現有教材）
 
 ### Module 0｜環境準備（30 分鐘，課前作業 + 開場檢查）
-- 目標：確保每位學員在開課前就能用 VS Code 連上 T3 並開啟 `.ipynb`
-- 教材：[Jupyter_Notebook_Tutorial.md](00_environment_setup/Jupyter_Notebook_Tutorial.md) 第一章（VS Code Jupyter 擴充套件安裝）
+- 目標：確保每位學員在開課前就能用 Antigravity IDE 連上 T3 並開啟 `.ipynb`
+- 教材：[Jupyter_Notebook_Tutorial.md](00_environment_setup/Jupyter_Notebook_Tutorial.md) 第一章（Antigravity IDE Jupyter 擴充套件安裝）
 - 課前作業：安裝 `ms-toolsai.jupyter` / `ms-python.python`，並確認能開啟一個測試 notebook
 
 ### Module 1｜認識這台超級電腦（45 分鐘）
@@ -90,7 +90,7 @@
 - 目標：從零裝出一個能在 notebook 裡跑 `qiime` 的環境
 - 教材：[conda_miniconda_qiime2_install.md](00_environment_setup/conda_miniconda_qiime2_install.md)
 - 實作：Miniconda 安裝 → 接受 ToS → 建立 QIIME2 conda env → 裝 ipykernel → 註冊 kernel
-- **穿插案例 1**：kernel 裝好卻在 VS Code 選單找不到 → 示範「Select Another Kernel → Jupyter Kernel」
+- **穿插案例 1**：kernel 裝好卻在 Antigravity IDE 選單找不到 → 示範「Select Another Kernel → Jupyter Kernel」
 
 ### Module 3｜把官方教學轉成可執行 Notebook（45 分鐘）
 - 目標：學會「不是每次都要別人給你 ipynb，自己能把官方文件轉成可跑的 notebook」

@@ -14,7 +14,7 @@
 
 - 這台機器是**多人共用的 login node**，直接在 login node 跑計算會影響其他 20 幾位使用者，也影響排程系統本身效能（見手冊第 2 節）。
 - SLURM 負責把你的工作**排隊、分配到 compute node 執行**，跑完自動釋放資源，過程中你不需要一直開著終端機盯著。
-- 工作跑在背景，就算你關閉 VS Code / 中斷 SSH 連線，工作依然會繼續執行。
+- 工作跑在背景，就算你關閉 Antigravity IDE / 中斷 SSH 連線，工作依然會繼續執行。
 
 ---
 
@@ -126,7 +126,7 @@ bash /work/c00cjz00/notebook/run_qiime2_pipeline.sh
 
 - `source .../activate <env>`：SLURM 分配到的 compute node 是全新的 shell 環境，
   **不會**自動繼承你在 login node 手動 `conda activate` 過的狀態，所以每個 SLURM script
-  裡都要重新啟用一次 conda 環境，否則會找不到 `qiime` 指令（跟我們之前在 VS Code `%%bash` cell
+  裡都要重新啟用一次 conda 環境，否則會找不到 `qiime` 指令（跟我們之前在 Antigravity IDE `%%bash` cell
   遇到的 PATH 問題原理相同，見 [Qiime2_VSCode_Jupyter_教學.md](../00_environment_setup/Qiime2_VSCode_Jupyter_教學.md) 第 5 節）。
 - 最後一行只是單純呼叫邏輯腳本，SLURM 派送腳本本身不含任何分析細節。
 
