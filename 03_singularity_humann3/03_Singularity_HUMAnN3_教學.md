@@ -60,7 +60,7 @@ singularity pull --force humann_latest.sif docker://biobakery/humann:latest
 本課程已經把轉好的 image 放在：
 
 ```
-/work/c00cjz00/notebook/class/03_singularity_humann3/containers/humann_latest.sif
+/work/$USER/notebook/class/03_singularity_humann3/containers/humann_latest.sif
 ```
 
 ---
@@ -82,8 +82,8 @@ singularity pull --force humann_latest.sif docker://biobakery/humann:latest
 
 ```bash
 singularity exec \
-  --bind /work/c00cjz00:/work/c00cjz00 \
-  /work/c00cjz00/notebook/class/03_singularity_humann3/containers/humann_latest.sif \
+  --bind /work/$USER:/work/$USER \
+  /work/$USER/notebook/class/03_singularity_humann3/containers/humann_latest.sif \
   humann --version
 ```
 
@@ -192,7 +192,7 @@ FileNotFoundError: ... metaphlan_databases/mpa_latest
 送出方式跟 QIIME2 範例完全一樣：
 
 ```bash
-cd /work/c00cjz00/notebook/class/03_singularity_humann3
+cd /work/$USER/notebook/class/03_singularity_humann3
 sbatch slurm_humann3_pipeline.sh
 squeue -u $USER
 ```

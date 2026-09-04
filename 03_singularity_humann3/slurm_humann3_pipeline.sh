@@ -18,4 +18,4 @@ export https_proxy=http://lgn304-v304:53128
 module load biology 2>/dev/null || true
 module load singularity 2>/dev/null || true
 
-bash /work/c00cjz00/notebook/class/03_singularity_humann3/run_humann3_pipeline.sh
+bash /work/$USER/notebook/class/03_singularity_humann3/run_humann3_pipeline.sh

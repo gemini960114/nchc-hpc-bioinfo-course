@@ -11,7 +11,7 @@
 
 ## 1. 整體流程總覽
 
-1. 在 `/work/c00cjz00/Miniconda` 安裝 Miniconda，建立專屬的 QIIME2 conda 環境（例如 `rachis-qiime2-2026.7`）。
+1. 在 `/work/$USER/Miniconda` 安裝 Miniconda，建立專屬的 QIIME2 conda 環境（例如 `rachis-qiime2-2026.7`）。
 2. 在該環境裡安裝 `ipykernel`，並註冊成 Jupyter kernel，讓 Antigravity IDE 可以選用。
 3. 把 QIIME 2 官方教學頁面的內容（文字＋指令）整理成一份 `.ipynb`：
    - 每個章節標題、說明文字、Question 提示 → 寫成 **markdown cell**
@@ -24,7 +24,7 @@
 
 ```bash
 # 啟用 conda
-source /work/c00cjz00/Miniconda/bin/activate
+source /work/$USER/Miniconda/bin/activate
 
 # 若尚未接受 Anaconda 頻道服務條款（只需執行一次）
 conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main

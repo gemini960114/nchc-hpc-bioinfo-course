@@ -90,7 +90,7 @@ set -euo pipefail
   - `-o pipefail`：管線（`|`）中間任何一段失敗，整條管線就算失敗（預設 bash 只看最後一段的結果）。
 
 ```bash
-WORKDIR="/work/c00cjz00/notebook/qiime2-moving-pictures-tutorial"
+WORKDIR="/work/$USER/notebook/qiime2-moving-pictures-tutorial"
 mkdir -p "${WORKDIR}"
 cd "${WORKDIR}"
 ```
@@ -119,9 +119,9 @@ wget -N -O 'sample-metadata.tsv' '...'
 #SBATCH --mail-user=0203126@niar.org.tw
 #SBATCH --mail-type=BEGIN,END
 
-source /work/c00cjz00/Miniconda/bin/activate rachis-qiime2-2026.7
+source /work/$USER/Miniconda/bin/activate rachis-qiime2-2026.7
 
-bash /work/c00cjz00/notebook/run_qiime2_pipeline.sh
+bash /work/$USER/notebook/class/02_qiime2_moving_pictures/run_qiime2_pipeline.sh
 ```
 
 - `source .../activate <env>`：SLURM 分配到的 compute node 是全新的 shell 環境，
@@ -138,7 +138,7 @@ bash /work/c00cjz00/notebook/run_qiime2_pipeline.sh
 ## 4. 送出與監控工作
 
 ```bash
-cd /work/c00cjz00/notebook
+cd /work/$USER/notebook
 sbatch slurm_qiime2_pipeline.sh
 # Submitted batch job 2030402
 ```
@@ -152,7 +152,7 @@ squeue -u $USER
 輸出範例：
 ```
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-           2030402    ngs53G qiime2_p c00cjz00  R       0:20      1 cpn3859
+           2030402    ngs53G qiime2_p  $USER  R       0:20      1 cpn3859
 ```
 - `ST` 欄位：`PD` = Pending（排隊中）、`R` = Running（執行中）
 - `NODELIST(REASON)`：Running 時顯示實際跑在哪個節點（例如 `cpn3859`）；Pending 時會顯示等待原因

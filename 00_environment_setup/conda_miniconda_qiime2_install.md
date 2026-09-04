@@ -1,6 +1,6 @@
 # Miniconda + QIIME2 + Jupyter Kernel 安裝教學
 
-本文件說明如何在 `/work/c00cjz00/Miniconda` 安裝 Miniconda，建立 QIIME2 環境，
+本文件說明如何在 `/work/$USER/Miniconda` 安裝 Miniconda，建立 QIIME2 環境，
 並將該環境註冊為 Jupyter Notebook 可選擇的 kernel。
 
 ---
@@ -8,7 +8,7 @@
 ## 1. 下載 Miniconda 安裝腳本
 
 ```bash
-cd /work/c00cjz00
+cd /work/$USER
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda_installer.sh
 ```
 
@@ -25,10 +25,10 @@ curl -L -o miniconda_installer.sh https://repo.anaconda.com/miniconda/Miniconda3
 用 `-b`（batch，非互動）+ `-p`（指定安裝路徑）：
 
 ```bash
-bash miniconda_installer.sh -b -p /work/c00cjz00/Miniconda
+bash miniconda_installer.sh -b -p /work/$USER/Miniconda
 ```
 
-> 若目錄已存在會報錯，需先 `rm -rf /work/c00cjz00/Miniconda` 再重新安裝，
+> 若目錄已存在會報錯，需先 `rm -rf /work/$USER/Miniconda` 再重新安裝，
 > 或改用 `-u`（update）安裝到既有目錄。
 
 ---
@@ -38,7 +38,7 @@ bash miniconda_installer.sh -b -p /work/c00cjz00/Miniconda
 僅在目前這個 shell session 啟用，不寫入 shell 設定檔：
 
 ```bash
-source /work/c00cjz00/Miniconda/bin/activate
+source /work/$USER/Miniconda/bin/activate
 ```
 
 （因為此機器已有 `module load miniconda3` 可用，通常**不建議**再對這份自裝的
@@ -93,7 +93,7 @@ conda env create \
 環境安裝完成後會位於：
 
 ```
-/work/c00cjz00/Miniconda/envs/rachis-qiime2-2026.7/
+/work/$USER/Miniconda/envs/rachis-qiime2-2026.7/
 ```
 
 ---

@@ -55,7 +55,7 @@ Antigravity IDE（VS Code 相容分支）內建 Remote SSH 功能，跟終端機
 ```ssh-config
 Host t3-c4
   HostName t3-c4.nchc.org.tw
-  User c00cjz00
+  User <你的帳號>
 
   # 直接進入 OTP / MFA 驗證流程
   PubkeyAuthentication no
@@ -76,7 +76,8 @@ Host t3-c4
 > `keyboard-interactive,password`，不然 SSH 客戶端會先嘗試金鑰驗證失敗才 fallback，
 > 連線體驗會變慢甚至卡住。
 >
-> `User` 請換成自己的帳號（範例是 `c00cjz00`）。
+> `User` 請換成自己的帳號。注意 ssh config **不會展開環境變數**，這一格不能寫 `$USER`，
+> 必須直接填入自己的帳號名稱（文件其他地方的 `/work/$USER` 在 shell 裡才會自動代換）。
 
 設定好之後：
 

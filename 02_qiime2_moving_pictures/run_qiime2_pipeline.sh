@@ -3,7 +3,7 @@
 # 對應 qiime2_moving_pictures_tutorial.ipynb 的完整流程（DADA2 版本）
 set -euo pipefail
 
-WORKDIR="/work/c00cjz00/notebook/qiime2-moving-pictures-tutorial-slurm"
+WORKDIR="/work/$USER/notebook/qiime2-moving-pictures-tutorial-slurm"
 mkdir -p "${WORKDIR}"
 cd "${WORKDIR}"
 

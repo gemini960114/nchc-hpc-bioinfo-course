@@ -15,6 +15,6 @@
 export http_proxy=http://lgn304-v304:53128
 export https_proxy=http://lgn304-v304:53128
 
-source /work/c00cjz00/Miniconda/bin/activate rachis-qiime2-2026.7
+source /work/$USER/Miniconda/bin/activate rachis-qiime2-2026.7
 
-bash /work/c00cjz00/notebook/run_qiime2_pipeline.sh
+bash /work/$USER/notebook/class/02_qiime2_moving_pictures/run_qiime2_pipeline.sh

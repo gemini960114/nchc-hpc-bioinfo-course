@@ -3,7 +3,7 @@
 # 對應 03_Singularity_HUMAnN3_教學.md / 03_humann3_demo.ipynb 的完整流程
 set -euo pipefail
 
-WORKDIR="/work/c00cjz00/notebook/class/03_singularity_humann3"
+WORKDIR="/work/$USER/notebook/class/03_singularity_humann3"
 SIF="${WORKDIR}/containers/humann_latest.sif"
 DB="${WORKDIR}/db"
 OUT="${WORKDIR}/demo_out"
@@ -12,7 +12,7 @@ DEMO_FASTQ="/usr/local/lib/python3.6/dist-packages/humann/tests/data/demo.fastq"
 mkdir -p "${WORKDIR}/containers" "${DB}" "${OUT}"
 cd "${WORKDIR}"
 
-SINGULARITY_BIND="--bind /work/c00cjz00:/work/c00cjz00"
+SINGULARITY_BIND="--bind /work/$USER:/work/$USER"
 
 echo "=== [1/4] 確認 / 建立 Singularity image ==="
 if [ ! -f "${SIF}" ]; then
