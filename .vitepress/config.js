@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "HPC 生物資訊分析課程",
   description: "國網中心台灣杉三號 GP1 生醫節點：用 QIIME2、HUMAnN3、FastQC/MultiQC、SLURM、Jupyter 跑一次完整的生物資訊分析",
-  base: '/nchc-hpc-bioinfo-cours/',
+  base: '/nchc-hpc-bioinfo-course/',
   ignoreDeadLinks: true, // 教學文件裡連到 .ipynb/.sh 等非 markdown 檔案的相對連結，檔案在 repo 裡真實存在，
                           // 但靜態站台不會打包這些檔案；.ipynb 已在 sidebar 用 GitHub blob 連結涵蓋，其餘視為已知限制
 
@@ -11,7 +11,7 @@ export default defineConfig({
     nav: [
       { text: '首頁', link: '/' },
       { text: '課程規劃案', link: '/課程規劃案_生醫HPC_QIIME2_Jupyter培訓課程' },
-      { text: 'GitHub', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-cours' }
+      { text: 'GitHub', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-course' }
     ],
 
     sidebar: [
@@ -36,7 +36,7 @@ export default defineConfig({
         text: '🧪 Module 1｜FastQC + MultiQC',
         items: [
           { text: '定序品質管控教學', link: '/01_fastqc_multiqc/01_FastQC_MultiQC_教學' },
-          { text: '在 GitHub 看 notebook ↗', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-cours/blob/main/01_fastqc_multiqc/01_fastqc_multiqc_demo.ipynb' }
+          { text: '在 GitHub 看 notebook ↗', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-course/blob/main/01_fastqc_multiqc/01_fastqc_multiqc_demo.ipynb' }
         ]
       },
       {
@@ -44,7 +44,7 @@ export default defineConfig({
         items: [
           { text: 'SLURM 腳本撰寫教學', link: '/02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例' },
           { text: '結果解讀指南', link: '/02_qiime2_moving_pictures/QIIME2_結果解讀指南' },
-          { text: '在 GitHub 看 notebook ↗', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-cours/blob/main/02_qiime2_moving_pictures/qiime2_moving_pictures_tutorial.ipynb' }
+          { text: '在 GitHub 看 notebook ↗', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-course/blob/main/02_qiime2_moving_pictures/qiime2_moving_pictures_tutorial.ipynb' }
         ]
       },
       {
@@ -52,7 +52,7 @@ export default defineConfig({
         items: [
           { text: '容器化生資工具教學', link: '/03_singularity_humann3/03_Singularity_HUMAnN3_教學' },
           { text: '結果解讀指南', link: '/03_singularity_humann3/HUMAnN3_結果解讀指南' },
-          { text: '在 GitHub 看 notebook ↗', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-cours/blob/main/03_singularity_humann3/03_humann3_demo.ipynb' }
+          { text: '在 GitHub 看 notebook ↗', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-course/blob/main/03_singularity_humann3/03_humann3_demo.ipynb' }
         ]
       }
     ],
@@ -62,7 +62,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-cours' }
+      { icon: 'github', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-course' }
     ],
 
     footer: {

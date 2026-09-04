@@ -14,7 +14,7 @@ hero:
       link: /00_environment_setup/快速上手
     - theme: alt
       text: 在 GitHub 上檢視
-      link: https://github.com/gemini960114/nchc-hpc-bioinfo-cours
+      link: https://github.com/gemini960114/nchc-hpc-bioinfo-course
 
 features:
   - icon: 🧰
