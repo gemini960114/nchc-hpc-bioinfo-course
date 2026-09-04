@@ -64,6 +64,13 @@ notebook 用 Python 直接生成 6 個模擬 FASTQ 檔案（不需要下載真�
 | `sample_E_gc_skew` | 混合兩群不同 GC bias（85% / 15%）的雙峰分布 | **Per Sequence GC Content** 明顯偏離理論常態分布 |
 | `sample_F_lowqual` | 全長 Phred 品質壓在 Q8~16 | 整體品質模組偏黃/紅 |
 
+> **附註（工具敏感度噪點，實測確認）**：`sample_B_degrading` 除了預期的品質模組變紅之外，
+> 還會在 **Per Sequence GC Content** 看到 FAIL，但這**不是刻意設計的問題**——
+> A、B 兩個樣本的 GC 分布統計上幾乎完全一樣（50.2%±4.12 vs 49.9%±4.06），FastQC 這個模組對
+> 「形狀接近常態但不完全相同」的分布相當敏感，純隨機序列偶爾會越界。
+> 因為 seed 固定（`random.seed(42)`），學員重跑一定會看到這個紅字，
+> 上課時如果被問到，正好是討論「工具閾值 vs 統計噪音」的現成素材。
+
 ---
 
 ## 5. 真實踩坑案例：資料產生器原本有兩個 bug

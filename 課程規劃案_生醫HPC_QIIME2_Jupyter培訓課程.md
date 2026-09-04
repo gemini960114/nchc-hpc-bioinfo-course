@@ -38,7 +38,7 @@
 | 模擬 FASTQ 產生器誤觸發 FastQC 的 Phred+64 編碼偵測，對照組全部品質模組顯示 FAIL | [01_FastQC_MultiQC_教學.md](01_fastqc_multiqc/01_FastQC_MultiQC_教學.md) 第 5.1 節 |
 | HUMAnN3 預設會嘗試下載 39GB 的 MetaPhlAn 資料庫 | [03_Singularity_HUMAnN3_教學.md](03_singularity_humann3/03_Singularity_HUMAnN3_教學.md) 第 5.1 節 |
 
-這 7 個案例都是真的在這台機器上操作時踩到、驗證過解法的，不是憑空編的練習題，出情境題時可以直接引用。
+這 8 個案例都是真的在這台機器上操作時踩到、驗證過解法的，不是憑空編的練習題，出情境題時可以直接引用。
 
 ---
 
@@ -48,9 +48,9 @@
 |---|---|---|---|
 | 沒有「為什麼是 QIIME2 / 16S 分析」的背景理論模組 | 現有教材直接進入操作，沒有先建立微生物體分析的基礎概念（OTU/ASV、alpha/beta diversity 的生物意義等） | 已新增 [QIIME2_結果解讀指南.md](02_qiime2_moving_pictures/QIIME2_結果解讀指南.md) 用「跑完之後對照解讀」的方式補上核心概念，不用額外排一段理論投影片時間 | 🟡 部分解決（用結果解讀取代正式理論課，若要更完整仍可額外補投影片） |
 | conda 與 uv 兩套環境管理方式並存，未說明取捨 | `Jupyter_Notebook_Tutorial.md` 用 `uv`，其餘教材用 `conda` | 已在 README 與 `Qiime2_VSCode_Jupyter_教學.md` 明確寫出取捨原則 | ✅ 已解決 |
-| 除錯案例未文件化 | 原本 5 個真實踩坑案例只存在對話紀錄 | 已全數整理進對應模組文件的除錯章節，並在 README、本文件第 1 節彙整成對照表（現已擴增為 7 個案例） | ✅ 已解決 |
-| 沒有費用/計費意識的實作練習 | 手冊有費率表，但沒有讓學員實際計算「這次跑的 job 花了多少 SU」的練習 | 用 `sacct` 查出的 `Elapsed × NCPUS` 搭配費率表，設計一個計費計算練習 | ⬜ 未處理 |
-| 沒有「何時該用 login node、何時該用 SLURM」的具體判斷練習 | 手冊有規則說明，但偏原則性 | 用真實案例（手動跑 notebook vs SLURM 自動化互相覆寫檔案那次）當教材，讓學員判斷分類 | ⬜ 未處理 |
+| 除錯案例未文件化 | 原本 5 個真實踩坑案例只存在對話紀錄 | 已全數整理進對應模組文件的除錯章節，並在 README、本文件第 1 節彙整成對照表（現已擴增為 8 個案例，最新一個是 FastQC 模擬資料產生器誤觸發 Phred+64 編碼偵測） | ✅ 已解決 |
+| 沒有費用/計費意識的實作練習 | 手冊有費率表，但沒有讓學員實際計算「這次跑的 job 花了多少 SU」的練習 | 已在 [SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) 第 7 節加入計費練習：用真實 job 2030543／2030736 示範 `sacct` 查 `Elapsed × NCPUS`、套費率表算費用，附 3 題練習題（含 ngs53G→ngs92G 換 partition 的思考題） | ✅ 已解決 |
+| 沒有「何時該用 login node、何時該用 SLURM」的具體判斷練習 | 手冊有規則說明，但偏原則性 | 已在 [SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) 第 8 節加入 10 個真實情境的判斷練習（摺疊式答案，含手動 notebook vs SLURM 共用目錄覆寫案例與 `salloc` 也算 SLURM 資源使用的細節） | ✅ 已解決 |
 | ANCOM-BC / 分類器等進階統計方法缺乏原理說明 | notebook 只給指令跟 Question，沒有解釋方法論 | [QIIME2_結果解讀指南.md](02_qiime2_moving_pictures/QIIME2_結果解讀指南.md) 第 4 節已說明 ANCOM-BC 的參考組、compositional data 限制等核心概念；分類器原理（Naive Bayes 訓練機制）仍未涵蓋 | 🟡 部分解決 |
 | 沒有涵蓋資料安全 / 分享權限實作練習 | 手冊有 `setfacl` 指令，但沒有實際演練 | 可在課程最後加一個「跟同組夥伴分享分析結果」的小練習 | ⬜ 未處理 |
 | **（新增）FastQC/HUMAnN3 兩個模組還沒排進正式課程時段** | 這兩個模組是後來才補上的，§4 課程大綱最初沒算進這兩段時間 | 本次更新已將兩者排入大綱（Module 4、Module 7），並重新估算總時數 | ✅ 本次已解決 |
@@ -123,6 +123,8 @@
   - 案例 4：`--output-dir` 目錄已存在導致失敗 → 讀懂錯誤訊息、修腳本讓它可重複執行
   - 案例 5：手動 notebook 跟 SLURM job 共用目錄互相覆寫 → 設計獨立工作目錄的架構原則
 - 實作：學員修改 `slurm_qiime2_pipeline.sh` 裡的 partition/資源設定，送出屬於自己的 job，用 `squeue`/`sacct` 追蹤
+- 收尾練習（同文件第 7、8 節）：用自己剛送出的 job 做一次計費計算（`Elapsed × NCPUS × 費率`），
+  再做 10 個「這個操作該在 login node 跑還是送 SLURM」的情境判斷題
 
 ### Module 7｜Singularity 容器 + HUMAnN3（45 分鐘）**新增，可列選修**
 - 目標：學會用容器解決「工具依賴太複雜、自己裝不動」的問題，並沿用 Module 6 的 SLURM 架構跑一個不同的分析工具

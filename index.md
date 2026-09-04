@@ -44,7 +44,7 @@ features:
     linkText: 看解讀指南
   - icon: 🐛
     title: 真實除錯案例集
-    details: 7 個在這台機器上實際踩過、驗證過解法的真實案例——kernel 選單、PATH 問題、compute node 連外網、資料庫下載陷阱。
+    details: 8 個在這台機器上實際踩過、驗證過解法的真實案例——kernel 選單、PATH 問題、compute node 連外網、資料庫下載陷阱、FastQC 編碼誤判。
     link: /課程規劃案_生醫HPC_QIIME2_Jupyter培訓課程
     linkText: 查看案例對照表
 ---
