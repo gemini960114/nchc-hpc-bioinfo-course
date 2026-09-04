@@ -1,0 +1,28 @@
+# 容器 image（898MB，不適合進 git，用腳本重新 pull 即可）
+**/containers/*.sif
+**/containers/pull.log
+
+# 下載/產生的資料庫、分析暫存與輸出（可由腳本重新產生，不用進版控）
+**/db/
+**/demo_out/
+**/fastq/
+**/fastqc_out/
+**/multiqc_out/
+
+# SLURM job 執行紀錄
+**/logs/*.log
+
+# Jupyter / Python 常見雜物
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# VitePress 網站建置產物與相依套件（不進版控，GitHub Actions 會自動重新安裝/建置）
+node_modules/
+.vitepress/dist/
+.vitepress/cache/
+.vitepress/.temp/
+*.log
+
+# 編輯器/系統雜物
+.DS_Store
