@@ -304,3 +304,96 @@ NCPUS   = 8
 2. 如果把同一份工作從 `ngs53G`（8核/53G，0.08 元/核心小時）換到 `ngs92G`（14核/92G，同樣 0.08 元/核心小時但核心數更多），
    在**跑一樣長時間**的前提下，花費會怎麼變化？為什麼即使費率數字相同，換更大 partition 還是可能讓總花費上升？
 3. 打開 `wallet` 指令查看目前計畫的 `SU_BALANCE`，估算一下：以你這學期預計要跑的分析量，目前的額度大概還能撐多久？
+
+1. 自己送一個 job（或用之前送過的），跑完後執行 `sacct -j <你的jobid> -o JobID,Partition,NCPUS,Elapsed,State`，
+   套用上面的公式算出花費（國科會計畫費率）。
+2. 如果把同一份工作從 `ngs53G`（8核/53G，0.08 元/核心小時）換到 `ngs92G`（14核/92G，同樣 0.08 元/核心小時但核心數更多），
+   在**跑一樣長時間**的前提下，花費會怎麼變化？為什麼即使費率數字相同，換更大 partition 還是可能讓總花費上升？
+3. 打開 `wallet` 指令查看目前計畫的 `SU_BALANCE`，估算一下：以你這學期預計要跑的分析量，目前的額度大概還能撐多久？
+
+---
+
+## 8. 練習：這個操作該在 Login Node 跑，還是該送 SLURM？
+
+手冊裡的規則很簡短：「不要在 login node 跑計算」。但實務上常常會猶豫——這算不算「計算」？
+下面 10 個情境，先自己判斷，再展開看答案。都是這門課實際遇過的真實情境，不是憑空編的。
+
+<details>
+<summary><b>情境 1</b>：執行 <code>qiime info</code> 確認安裝版本</summary>
+
+**Login node。** 單次查詢、秒級完成、幾乎不吃 CPU/記憶體，這類「健檢」指令留在 login node 做最方便，
+不需要為了一行指令去排隊等 SLURM 資源。
+</details>
+
+<details>
+<summary><b>情境 2</b>：對完整資料集跑 <code>qiime dada2 denoise-single</code></summary>
+
+**SLURM。** DADA2 denoise 是這整條 pipeline 最耗時的一步（實測可能要 10 分鐘以上），CPU/記憶體吃重，
+是手冊明確點名「真正吃資源的步驟」的範例，一定要送 SLURM。
+</details>
+
+<details>
+<summary><b>情境 3</b>：<code>wget</code> 下載一份 30MB 的教學用參考資料</summary>
+
+**Login node。** 這是 I/O、不是運算，login node 也是唯一能直接連外網的地方
+（compute node 預設連不到外網，見第 5.2.1 節的 proxy 案例）。這類下載步驟本來就該放在 login node，
+或是在 SLURM script 裡額外設定 proxy 才能在 compute node 下載。
+</details>
+
+<details>
+<summary><b>情境 4</b>：訓練 QIIME2 的 Naive Bayes 分類器（<code>fit-classifier-naive-bayes</code>）</summary>
+
+**SLURM。** 訓練分類器是 CPU 密集型工作，即使用縮小版的參考資料庫也可能要跑一段時間，
+跟 DADA2 denoise 一樣屬於「應該送 SLURM」的類別。
+</details>
+
+<details>
+<summary><b>情境 5</b>：用 <code>vim</code>/<code>nano</code> 編輯一份 SLURM job script 的內容</summary>
+
+**Login node。** 純文字編輯不是運算，這類「準備工作」（寫腳本、改參數、`mkdir -p logs`）本來就該在
+login node 上做，準備好之後才用 `sbatch` 把運算的部分送出去。
+</details>
+
+<details>
+<summary><b>情境 6</b>：在 notebook 裡手動跑 <code>qiime demux summarize</code> 探索一個小測試資料集，
+同時背景有一個 SLURM job 正在對同一個資料夾跑完整 pipeline</summary>
+
+**技術上 login node 跑得動（資料小、單次執行快），但這是這門課真實踩過的坑**：
+手動探索跟自動化 SLURM job 共用同一個工作目錄，SLURM job 裡的 `wget -O` 會覆寫/截斷正在被讀取的檔案，
+導致手動那邊莫名其妙報錯（見第 5.2 節案例）。**正確做法不是「該不該用 login node」，
+而是「兩種工作流程的目錄要分開」**——這題的重點是提醒你，資源歸屬不是唯一要考慮的事，工作目錄隔離也很重要。
+</details>
+
+<details>
+<summary><b>情境 7</b>：用 HUMAnN3 容器搭配完整版 UniRef90 資料庫，對真實宏基因體樣本跑分析</summary>
+
+**SLURM，而且要選大一點的 partition。** 完整版資料庫的 translated search（DIAMOND 比對）非常吃 CPU，
+這門課的 HUMAnN3 教學文件裡也提到正式分析建議至少 `ngs92G` 起跳，資料量大時要往更高的 partition 走。
+</details>
+
+<details>
+<summary><b>情境 8</b>：執行 <code>sacct</code>／<code>squeue</code> 查看工作狀態</summary>
+
+**Login node。** 查詢類指令本身不是運算，不管你要查的那個 job 是不是正在 compute node 上跑，
+查詢動作都在 login node 上執行就好。
+</details>
+
+<details>
+<summary><b>情境 9</b>：用 <code>salloc</code> 拿一個互動式 compute node 來手動除錯一支腳本</summary>
+
+**這其實還是「SLURM 資源」**，雖然操作起來感覺像在手動打指令，但 `salloc` 實際佔用的是 compute node 的配額，
+會計入你的 SU 消耗、也會受 partition 限制約束。跟純粹在 login node 打字完全是两回事，
+判斷「這是不是計算」不能只看「我是不是在手動打指令」，要看「這個 shell 實際跑在哪個節點上」。
+</details>
+
+<details>
+<summary><b>情境 10</b>：直接在 login node 上對 100 個大型 <code>.fastq.gz</code> 檔案跑 FastQC</summary>
+
+**應該送 SLURM，這是常見的錯誤示範。** 單一個小檔案的 FastQC 可能感覺很快，但 100 個大檔案批次跑，
+CPU 使用時間加總起來就是「重運算」了，符合手冊「不要在 login node 跑計算」的規範，應該包成 SLURM job 送出。
+</details>
+
+### 判斷口訣
+
+真的很難判斷時，可以用這個口訣快速篩選：**「秒級完成 + 不常跑 + 不佔用大量 CPU/記憶體」才留在 login node，
+其他都送 SLURM。** 有疑慮時，寧可送 SLURM 排隊等一下，也不要在共用的 login node 上賭一把。

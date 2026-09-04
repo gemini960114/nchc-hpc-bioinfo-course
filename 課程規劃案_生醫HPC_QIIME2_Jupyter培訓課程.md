@@ -23,7 +23,7 @@
 | [00_environment_setup/快速上手.md](00_environment_setup/快速上手.md) | md | 三步驟登入→選 kernel→跑分析，遇到問題查對照表 | 給「環境已經裝好、只想趕快跑分析」的人看的懶人包，不用先讀完 Module 0 其他四份完整文件 |
 | [02_qiime2_moving_pictures/QIIME2_結果解讀指南.md](02_qiime2_moving_pictures/QIIME2_結果解讀指南.md) | md | Alpha/beta diversity、taxonomy barplot、ANCOM-BC 的生物學解讀，對照 Moving Pictures 資料集本身的實驗設計（抗生素擾動 + 恢復）解讀 | 補齊「分析為重」定位下最重要的一塊：不只會跑指令，還看得懂結果 |
 | [03_singularity_humann3/HUMAnN3_結果解讀指南.md](03_singularity_humann3/HUMAnN3_結果解讀指南.md) | md | Gene family/pathway abundance 解讀、用本次實測的真實 demo 數字示範判讀、QIIME2 vs HUMAnN3 使用時機比較 | 同上，HUMAnN3 版本 |
-| [jobscript_ngs53G.sh](../jobscript_ngs53G.sh) | script | 單一 partition 的 SLURM script 範例 | 已被 `run_qiime2_pipeline.sh` + `slurm_qiime2_pipeline.sh` 取代，維持放在 `class/` 外層當作過時草稿，不建議參考 |
+| [jobscript_ngs53G.sh](../jobscript_ngs53G.sh) | script | 單一 partition 的 SLURM script 範例 | 已被 `run_qiime2_pipeline.sh` + `slurm_qiime2_pipeline.sh` 取代，檔案開頭已加註 **⚠️ DEPRECATED** 標頭並指向替代檔案，維持放在 `class/` 外層當作歷史參考，不建議直接使用 |
 
 **真實除錯案例（已全部落成教材，不再是「隱性知識」）：**
 
@@ -151,7 +151,7 @@
 
 - [x] ~~把 5 個真實除錯案例整理成獨立案例集~~ —— 已改用「分散記錄在對應模組文件 + 在 README 和本文件彙整成對照表」的方式處理，不另外開新檔案（避免同一內容多處維護）
 - [x] ~~統一說明 conda vs uv 的使用場景~~ —— 已寫入 README 與 `Qiime2_VSCode_Jupyter_教學.md`
-- [ ] `jobscript_ngs53G.sh` 已被分離式架構取代，目前維持放在 `class/` 外層當草稿，**建議在確認沒人再參考後直接移除**
+- [x] ~~`jobscript_ngs53G.sh` 已被分離式架構取代，建議清理~~ —— 已在檔案開頭加上 ⚠️ DEPRECATED 標頭並指向替代檔案（非破壞性做法，保留檔案本身當歷史參考，避免誤用）
 - [ ] 若學員程度較高，可設計選修模組深入 ANCOM-BC、分類器訓練的統計原理
 - [ ] 確認開課當天的 partition（如 `ngsTest`／`ngs53G`）在該時段有空餘資源，避免全班同時送 job 卡在排隊
 - [x] ~~跟課程籌備者確認：一天半 vs 一天壓縮版~~ —— 已拍板採用一天半（見 §3），一天壓縮版留作場地受限時的備援方案
