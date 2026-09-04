@@ -95,7 +95,8 @@ Module 3：Singularity + HUMAnN3（容器化生資工具 + SLURM，補 QIIME2 �
 | `qiime ... --output-dir` 目錄已存在導致報錯 | [02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) 第 5.2 節 |
 | 手動 notebook 操作跟 SLURM job 共用目錄互相覆寫檔案 | [02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md](02_qiime2_moving_pictures/SLURM_腳本撰寫教學_QIIME2實作範例.md) 第 5.2 節 |
 | HUMAnN3 預設會嘗試下載 39GB 的 MetaPhlAn 資料庫 | [03_singularity_humann3/03_Singularity_HUMAnN3_教學.md](03_singularity_humann3/03_Singularity_HUMAnN3_教學.md) 第 5.1 節 |
-| MultiQC 執行出現無害的 `_ARRAY_API not found` 警告 | [01_fastqc_multiqc/01_FastQC_MultiQC_教學.md](01_fastqc_multiqc/01_FastQC_MultiQC_教學.md) 第 5 節 |
+| MultiQC 執行出現無害的 `_ARRAY_API not found` 警告 | [01_fastqc_multiqc/01_FastQC_MultiQC_教學.md](01_fastqc_multiqc/01_FastQC_MultiQC_教學.md) 第 6 節 |
+| 模擬 FASTQ 產生器誤觸發 FastQC 的 Phred+64 編碼偵測，導致對照組全部品質模組顯示 FAIL | [01_fastqc_multiqc/01_FastQC_MultiQC_教學.md](01_fastqc_multiqc/01_FastQC_MultiQC_教學.md) 第 5.1 節 |
 
 ---
 

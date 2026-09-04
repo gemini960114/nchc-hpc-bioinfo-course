@@ -61,12 +61,50 @@ notebook 用 Python 直接生成 6 個模擬 FASTQ 檔案（不需要下載真�
 | `sample_B_degrading` | 讀長後 40% 品質線性下降 | **Per base sequence quality** 尾端變黃/紅 |
 | `sample_C_adapter` | 35% 的 reads 中間插入 Illumina TruSeq adapter 片段 | **Overrepresented sequences** / adapter 相關警告 |
 | `sample_D_duplicates` | 70% 的 reads 來自一小群模板重複 | **Sequence Duplication Levels** 出現紅色 |
-| `sample_E_gc_skew` | GC 含量刻意偏高（bias=0.85） | **Per Sequence GC Content** 明顯偏離理論常態分布 |
+| `sample_E_gc_skew` | 混合兩群不同 GC bias（85% / 15%）的雙峰分布 | **Per Sequence GC Content** 明顯偏離理論常態分布 |
 | `sample_F_lowqual` | 全長 Phred 品質壓在 Q8~16 | 整體品質模組偏黃/紅 |
 
 ---
 
-## 5. 已知的小狀況：MultiQC 執行時出現 `_ARRAY_API not found` 警告
+## 5. 真實踩坑案例：資料產生器原本有兩個 bug
+
+這份模擬資料產生器最初版本，實際送 SLURM job 跑過一輪、逐行比對 `fastqc_data.txt` 之後，
+發現對照組 `sample_A_good` 全部品質模組顯示 FAIL、`sample_E_gc_skew` 的 GC 模組卻顯示 PASS——
+跟教學文件原本寫的預期完全相反。兩個都是真的 bug，不是分析結果的隨機波動。
+
+### 5.1 Bug 1：Phred+64 編碼誤判
+
+原本的品質分數固定壓在 Q34–38，換算成 ASCII 全部 ≥64。FastQC 判斷編碼格式的邏輯是：
+「如果整個檔案裡的品質字元全部 ≥64，就假設是舊式的 Illumina 1.3/1.5（Phred+64）」。
+結果 Q35 被誤判成 Phred+64 解讀成 Q3~7，害對照組品質模組全部變 FAIL：
+
+```
+Basic Statistics: Encoding = Illumina 1.5   ← 誤判，實際應該是 Phred+33
+```
+
+**解法**：讓每個 base 有 2% 機率掉到 Q10~20（低於誤判門檻），FastQC 就能正確判斷成
+`Sanger / Illumina 1.9`（標準 Phred+33）。這個修正還有一個附帶好處：真實定序資料本來就會有零星低品質
+base，加了這個雜訊反而讓模擬資料更接近真實情況。
+
+### 5.2 Bug 2：GC skew 設計方式沒觸發到對應模組
+
+原本 `sample_E_gc_skew` 是整批 reads 都用同一個偏高的 GC bias（0.85）產生。但 FastQC 的
+"Per Sequence GC Content" 模組比對的是「觀測分布」跟「以觀測平均值為中心建出來的理論常態分布」——
+**整批一起偏移不會被抓到**，因為觀測平均值本身也跟著偏移，兩者形狀仍然吻合。
+
+**解法**：改成混合兩群不同 GC bias 的 reads（85% 與 15%），產生真正的雙峰分布，
+形狀偏離常態分布才會讓這個模組真的觸發警告。
+
+### 5.3 附帶修正：意外的 duplication 警告
+
+原本非刻意設計重複的樣本（A/B/C/E/F）用 `random.choice(template_pool)` 重複抽樣產生每一條 read，
+即使 pool 大小等於 read 數，帶放回抽樣還是會統計性地產生不少重複，導致對照組也出現
+"Sequence Duplication Levels" WARN。**解法**：改成依序（`i % len(template_pool)`）取用模板，
+只有 `sample_D_duplicates` 這種刻意設計高重複率的樣本才用 `random.choice` 從小子集重複抽樣。
+
+---
+
+## 6. 已知的小狀況：MultiQC 執行時出現 `_ARRAY_API not found` 警告
 
 實際測試時會看到：
 
@@ -83,7 +121,7 @@ AttributeError: _ARRAY_API not found
 
 ---
 
-## 6. 練習後可以延伸思考的問題
+## 7. 練習後可以延伸思考的問題
 
 - 如果 `sample_C_adapter` 是真實資料，正式分析前一般會先用什麼工具做 adapter trimming？
   （提示：`cutadapt`，QIIME2 也有內建 `q2-cutadapt` 插件）
