@@ -26,3 +26,6 @@ node_modules/
 
 # 編輯器/系統雜物
 .DS_Store
+
+# 個人/未列入課程之參考資料
+uptodate epilepsy related topics for LLM/

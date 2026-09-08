@@ -10,6 +10,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '首頁', link: '/' },
+      { text: '今日課程 (2026-09-08)', link: '/course_20260908' },
       { text: '課程規劃案', link: '/課程規劃案_生醫HPC_QIIME2_Jupyter培訓課程' },
       { text: 'GitHub', link: 'https://github.com/gemini960114/nchc-hpc-bioinfo-course' }
     ],
@@ -19,7 +20,8 @@ export default defineConfig({
         text: '📚 課程總覽',
         items: [
           { text: '課程資料夾說明', link: '/README' },
-          { text: '課程規劃案（逐時段教案）', link: '/課程規劃案_生醫HPC_QIIME2_Jupyter培訓課程' }
+          { text: '課程規劃案（逐時段教案）', link: '/課程規劃案_生醫HPC_QIIME2_Jupyter培訓課程' },
+          { text: '🎯 2026-09-08 實戰課程講義', link: '/course_20260908' }
         ]
       },
       {

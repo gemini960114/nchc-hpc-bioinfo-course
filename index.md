@@ -7,6 +7,9 @@ hero:
   tagline: "以 GP1 生醫核心設施為基礎，從環境安裝、Jupyter 互動探索到 SLURM 自動化生產，實際跑通 QIIME2 16S 分析與 HUMAnN3 宏基因體功能分析"
   actions:
     - theme: brand
+      text: 🎯 今日實戰講義 (2026-09-08)
+      link: /course_20260908
+    - theme: alt
       text: 查看課程規劃案
       link: /課程規劃案_生醫HPC_QIIME2_Jupyter培訓課程
     - theme: alt
