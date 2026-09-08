@@ -29,7 +29,7 @@ export default defineConfig({
               { text: '單元一：IDE 介面導覽', link: '/course_20260908#unit-1' },
               { text: '單元二：SSH Config 與 Proxy', link: '/course_20260908#unit-2' },
               { text: '單元三：必備 Extensions 安裝', link: '/course_20260908#unit-3' },
-              { text: '單元四：Jupyter 與 ipykernel', link: '/course_20260908#unit-4' },
+              { text: '單元四：Jupyter、uv 與 Miniconda', link: '/course_20260908#unit-4' },
               { text: '單元五：SLURM 排程語法', link: '/course_20260908#unit-5' },
               { text: '單元六：AI Agent 輔助實戰', link: '/course_20260908#unit-6' },
               { text: '單元七：補充講義索引', link: '/course_20260908#unit-7' }
