@@ -21,7 +21,20 @@ export default defineConfig({
         items: [
           { text: '課程資料夾說明', link: '/README' },
           { text: '課程規劃案（逐時段教案）', link: '/課程規劃案_生醫HPC_QIIME2_Jupyter培訓課程' },
-          { text: '🎯 2026-09-08 實戰課程講義', link: '/course_20260908' }
+          {
+            text: '🎯 2026-09-08 實戰課程講義',
+            link: '/course_20260908',
+            collapsed: false,
+            items: [
+              { text: '單元一：IDE 介面導覽', link: '/course_20260908#unit-1' },
+              { text: '單元二：SSH Config 與 Proxy', link: '/course_20260908#unit-2' },
+              { text: '單元三：必備 Extensions 安裝', link: '/course_20260908#unit-3' },
+              { text: '單元四：Jupyter 與 ipykernel', link: '/course_20260908#unit-4' },
+              { text: '單元五：SLURM 排程語法', link: '/course_20260908#unit-5' },
+              { text: '單元六：AI Agent 輔助實戰', link: '/course_20260908#unit-6' },
+              { text: '單元七：補充講義索引', link: '/course_20260908#unit-7' }
+            ]
+          }
         ]
       },
       {
