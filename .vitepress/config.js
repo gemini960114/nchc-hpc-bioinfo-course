@@ -26,6 +26,7 @@ export default defineConfig({
             link: '/course_20260908',
             collapsed: false,
             items: [
+              { text: '單元 0：iService 與帳號驗證', link: '/course_20260908#unit-0' },
               { text: '單元一：IDE 介面導覽', link: '/course_20260908#unit-1' },
               { text: '單元二：SSH Config 與 Proxy', link: '/course_20260908#unit-2' },
               { text: '單元三：必備 Extensions 安裝', link: '/course_20260908#unit-3' },
